@@ -11,13 +11,6 @@ export class Employe extends Document {
   password: string;
 
   @Prop({
-    type: String,
-    required: true,
-    trim: true
-  })
-  document: string;
-  
-  @Prop({
    type: String,
    required: true,
    uppercase: true,
@@ -44,24 +37,10 @@ export class Employe extends Document {
   @Prop({
     type: String,
     required: true,
-    trim: true
-  })
-  numberPhone: string;
-
-  @Prop({
-    type: String,
-    required: true,
     enum: ['ADMIN', 'EMPLOYEE', 'SUPERADMIN'],
     default: 'Employee'
   })
   role: string;
-
-  @Prop({
-    type: Date,
-    required: true,
-    default: new Date()
-  })
-  hireDate: Date;
 
   @Prop({
     type: Boolean,

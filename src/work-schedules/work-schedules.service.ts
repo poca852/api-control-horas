@@ -62,13 +62,15 @@ export class WorkSchedulesService {
     return `This action returns all workSchedules`;
   }
 
-  async findByUser(id: string) {
+  async findByUser(id: string, month: number) {
     
     const workSchedules = await this.WorkSheduleModel.find({
       employeeId: id
     })
 
-    return workSchedules.reverse();
+    const filter = this.filterByMonth(workSchedules, month)
+  
+    return filter.reverse();
 
   }
 
@@ -78,5 +80,11 @@ export class WorkSchedulesService {
 
   remove(id: number) {
     return `This action removes a #${id} workSchedule`;
+  }
+
+  public filterByMonth = (workSchedules: any[], month: number) => {
+    return workSchedules.filter(schedule => {
+      return schedule.workDate.getMonth() === month && schedule.workDate.getFullYear() === 2024;
+    });
   }
 }

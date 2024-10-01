@@ -17,26 +17,18 @@ export class CreateEmployeeDto {
   username: string;
 
   @IsString()
-  document: string;
-
-  @IsString()
   password: string;
 
   @IsEmail()
   email: string;
 
   @IsString()
-  numberPhone: string;
-
-  @IsString()
   @IsEnum(UserRole)
-  role: UserRole;
-
-  @IsDate()
   @IsOptional()
-  hireDate: Date;
+  role: UserRole = UserRole.Employee;
 
   @IsBoolean()
-  isActive: boolean;
+  @IsOptional()
+  isActive: boolean = true;
 
 }

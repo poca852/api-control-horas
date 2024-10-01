@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseIntPipe } from '@nestjs/common';
 import { WorkSchedulesService } from './work-schedules.service';
 import { CreateWorkScheduleDto } from './dto/create-work-schedule.dto';
 import { UpdateWorkScheduleDto } from './dto/update-work-schedule.dto';
@@ -22,8 +22,11 @@ export class WorkSchedulesController {
   }
 
   @Get(':idUser')
-  findByUser(@Param('idUser', ParseMongoIdPipe) id: string) {
-    return this.workSchedulesService.findByUser(id);
+  findByUser(
+    @Param('idUser', ParseMongoIdPipe) id: string,
+    @Query('month', ParseIntPipe) month: number )
+  {
+    return this.workSchedulesService.findByUser(id, month);
   }
 
   @Patch(':id')
